@@ -10,7 +10,7 @@ Screen[] screens = new Screen[1];
 /* Main Methods */
 void setup()
 {
-  fullScreen();
+  size(1200, 800);
   screens[0] = new MainMenu();
 }
 void draw()
