@@ -6,6 +6,7 @@ main menu
 */
 import java.util.*;
 final int CLICK_DELAY = 50;
+final int DATA_COUNT = 7;
 private int timeSinceLastClick = 0;
 int op;
 boolean isClient;
@@ -30,7 +31,7 @@ void setup() {
   {
     op = 2;
     signedIn = true;
-    int userInfoStart = userID * 6 + 2;
+    int userInfoStart = userID * DATA_COUNT + 2;
     isClient = dataBase[userInfoStart].split(" ")[1].equals("Client");
     
     if(isClient)
@@ -62,8 +63,8 @@ void mousePressed()
 {
   if(timeSinceLastClick < CLICK_DELAY)
   {
-    //if(op == 1)
-    //  signInMenuInput();
+    if(op == 1)
+      signInMenuInput();
     // put shit here
   }
   timeSinceLastClick = 0;
@@ -71,13 +72,13 @@ void mousePressed()
 void keyPressed()
 {
   if(op == 1)
-    signInMenuInput();
+    signInMenuKeyInput();
 }
-void addNewClient(Client c, String username, String password)
+void addNewClient(Client c, String password)
 {
   String[] dataBase = loadStrings("Database.txt");
   int count = int(dataBase[1].split(" ") [0]);
-  String[] newClientData = new String[6];
+  String[] newClientData = new String[DATA_COUNT];
   c.ID = count;
   dataBase[1] = (count + 1) + "";
   newClientData[0] = count + " Client";
@@ -86,17 +87,18 @@ void addNewClient(Client c, String username, String password)
   newClientData[3] = c.phoneNumber;
   newClientData[4] = "";
   newClientData[5] = "";
+  newClientData[6] = password;
   thisClient = c;
   signedIn = true;
   isClient = true;
   saveStrings("Information.txt", new String[]{count + ""});
   saveStrings("Database.txt", concat(dataBase, newClientData));
 }
-void addNewDoctor(Doctor d, String username, String password)
+void addNewDoctor(Doctor d, String password)
 {
   String[] dataBase = loadStrings("Database.txt");
   int count = int(dataBase[1].split(" ") [0]);
-  String[] newDoctorData = new String[6];
+  String[] newDoctorData = new String[DATA_COUNT];
   d.ID = count;
   dataBase[1] = (count + 1) + "";
   newDoctorData[0] = count + " Doctor";
@@ -105,6 +107,7 @@ void addNewDoctor(Doctor d, String username, String password)
   newDoctorData[3] = d.PHD;
   newDoctorData[4] = d.MINC;
   newDoctorData[5] = "";
+  newDoctorData[6] = password;
   thisDoctor = d;
   signedIn = true;
   isClient = false;
@@ -113,11 +116,11 @@ void addNewDoctor(Doctor d, String username, String password)
 }
 Client makeClient(String[] dataBase, int ID)
 {
-  int userInfoStart = ID * 6 + 2;
+  int userInfoStart = ID * DATA_COUNT + 2;
   return new Client(ID, dataBase[userInfoStart + 1], dataBase[userInfoStart + 2], dataBase[userInfoStart + 3]);
 }
 Doctor makeDoctor(String[] dataBase, int ID)
 {
-  int userInfoStart = ID * 6 + 2;
+  int userInfoStart = ID * DATA_COUNT + 2;
   return new Doctor(ID, dataBase[userInfoStart + 1], dataBase[userInfoStart + 2], dataBase[userInfoStart + 3], dataBase[userInfoStart + 4]);
 }
