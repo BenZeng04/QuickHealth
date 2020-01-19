@@ -1,0 +1,2 @@
+Version 1.0
+-1 // This is the client ID. -1 means that the user is currently signed out.
