@@ -1,5 +1,5 @@
 class Doctor {
   int ID;
-  String phoneNumber, PHD, MINC;
+  String name, phoneNumber, PHD, MINC;
   ArrayList<Client> allClients;
 }
