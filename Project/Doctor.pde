@@ -1,15 +1,14 @@
 class Doctor implements Comparable<Doctor> {
   int ID;
-  String name, phoneNumber, PHD, MINC;
+  String name, MINC, phoneNumber;
   ArrayList<Client> allClients;
-  public Doctor(int id, String n, String pN, String phd, String minc)
+  public Doctor(int id, String n,  String minc, String pN)
   {
     ID = id;
     name = n;
     phoneNumber = pN;
-    PHD = phd;
     MINC = minc;
-    allClients = new ArrayList<Client>();;
+    allClients = new ArrayList<Client>();
   }
   public int compareTo(Doctor c)
   {

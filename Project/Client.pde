@@ -9,6 +9,7 @@ class Client implements Comparable<Client> {
     name = n;
     healthCard = hc;
     phoneNumber = pn;
+    allDoctors = new ArrayList<Doctor>();
   }
   public int compareTo(Client c)
   {
