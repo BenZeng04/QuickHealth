@@ -142,7 +142,6 @@ void mousePressed()
       displayDoctorsMouse();
     else if(op == 6)
       displayTreatmentInput();
-    // put shit here
   }
   timeSinceLastClick = 0;
 }
